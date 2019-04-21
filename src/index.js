@@ -7,6 +7,8 @@ import resolvers from "./resolvers";
 
 import User from "./models/user";
 import Product from "./models/product";
+import Cart from "./models/cart";
+import CartItem from "./models/cart-item";
 
 const port = process.env.PORT || "4000";
 const app = express();
@@ -16,12 +18,18 @@ const typeDefs = importSchema("src/schema.graphql");
 const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 User.hasMany(Product);
+User.hasOne(Cart);
+
+Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+Product.belongsToMany(Cart, { through: CartItem });
+
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, { through: CartItem });
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  // .sync()
   .then(() => User.findByPk(1))
   .then(user => {
     if (!user) {
