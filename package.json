@@ -21,7 +21,9 @@
     "env-cmd": "^8.0.2",
     "express": "^4.16.4",
     "graphql": "^14.2.1",
-    "graphql-import": "^0.7.1"
+    "graphql-import": "^0.7.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.7.1"
   },
   "devDependencies": {
     "jest": "^24.7.1",
