@@ -1,0 +1,8 @@
+# import Product from './product.graphql'
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  products: [Product]
+}

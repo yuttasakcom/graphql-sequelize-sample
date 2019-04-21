@@ -1,3 +1,5 @@
+# import User from './user.graphql'
+
 type Query {
   products: [Product!]!
 }
@@ -13,6 +15,7 @@ type Product {
   price: Float!
   imageUrl: String
   description: String!
+  userId: User!
   createdAt: String!
   updatedAt: String!
 }
@@ -22,6 +25,7 @@ input CreateProductInput {
   price: Float!
   imageUrl: String
   description: String!
+  userId: Int!
 }
 
 input UpdateProductInput {
